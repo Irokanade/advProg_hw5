@@ -10,7 +10,8 @@ public:
     String() {
         this->size_ = 0;
         this->capacity_ = 0;
-        this->str_ = nullptr;
+        this->str_ = new char[1];
+        this->str_[0] = '\0';
     }
 
     // 2. copy constructor
@@ -45,14 +46,20 @@ public:
     }
 
     // 7. operator []
+    // read write
+    
+    // read only
     const char operator[] (size_t index) const {
         return this->str_[index];
     }
+
     // 8. operator +=
     String& operator+= (String const &s);
     String& operator+= (const char *s);
 
     // 9. clear()
+    void clear();
+
     // 10. operator =
     String &operator= (String const &s);
     String &operator= (const char *s);

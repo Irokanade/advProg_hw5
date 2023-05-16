@@ -51,6 +51,14 @@ String& String::operator+= (const char *s) {
     return *this;
 }
 
+void String::clear() {
+    for(size_t i = 0; i < this->capacity_; ++i) {
+        this->str_[i] = 0;
+    }
+
+    this->size_ = 0;
+}
+
 String& String::operator= (String const &s) {
     // check if enough capacity
     if(this->capacity_ > s.size_) {
