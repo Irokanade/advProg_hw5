@@ -14,5 +14,10 @@ int main() {
     cout << t << endl;
     cout << s.size() << endl;
 
+    cout << s[1] << endl;
+    s[1] = 'B';
+    cout << s[1] << endl;
+    cout << s << endl;
+
     return 0;
 }

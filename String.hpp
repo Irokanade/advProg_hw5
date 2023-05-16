@@ -10,8 +10,7 @@ public:
     String() {
         this->size_ = 0;
         this->capacity_ = 0;
-        this->str_ = new char[1];
-        this->str_[0] = '\0';
+        this->str_ = nullptr;
     }
 
     // 2. copy constructor
@@ -35,10 +34,32 @@ public:
         delete[] this->str_;
     }
 
+    // using Proxy class to implement [] set and get function
+    class Proxy {
+    public:
+        friend class String;
+        // conversion operator
+        operator char() const {
+            return m_s.get(m_index);
+        }
+
+        Proxy& operator= (char value) {
+            m_s.set(m_index, value);
+            return *this;
+        }
+
+    private:
+        // using initializer list constructor
+        Proxy(String &s, size_t index): m_s(s), m_index(index) {}
+        String &m_s;
+        size_t m_index; 
+    };
+
     // 5. size()
     size_t size() const {
         return this->size_;
     }
+    
     // 6. c_str()
     const char *c_str() const {
         const char *temp = this->str_;
@@ -47,7 +68,9 @@ public:
 
     // 7. operator []
     // read write
-    
+    Proxy operator[] (size_t index) {
+        return Proxy(*this, index);
+    }
     // read only
     const char operator[] (size_t index) const {
         return this->str_[index];
@@ -70,6 +93,9 @@ private:
     char *str_ = nullptr;
     size_t size_ = 0;
     size_t capacity_ = 0;
+
+    const char get(size_t index) const {return this->str_[index];}
+    void set(size_t index, char value) {this->str_[index] = value;}
 };
 // A. relational operators (<, >, <=, >=, ==, !=)
 // B. operator <<, 
