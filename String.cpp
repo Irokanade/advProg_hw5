@@ -2,28 +2,28 @@
 
 using namespace std;
 
-String& String::operator+= (String const &s) {
+String& String::operator+= (const String &s) {
     // check if enough capacity
     size_t newSize = this->size_+s.size_;
 
     // use > operator to account for null terminating character
     if(this->capacity_ > newSize) {
         // if enough capacity then just strncat
-        std::strncat(this->str_, s.str_, s.size_);
+        std::strncat(this->str_, s.str_, this->capacity_);
     } else {
         // else reallocate memory
         char *temp = new char[this->size_+1];
-        strncpy(temp, this->str_, this->size_);
+        strncpy(temp, this->str_, this->size_+1);
 
         delete[] this->str_;
         this->capacity_ = newSize+1;
         this->str_ = new char[this->capacity_]; 
-        std::strncpy(this->str_, temp, strlen(temp));
-        std::strncat(this->str_, s.str_, s.size_);
+        std::strncpy(this->str_, temp, this->capacity_);
+        std::strncat(this->str_, s.str_, this->capacity_);
         delete[] temp;
     }
 
-    this->size_ += s.size_;
+    this->size_ = newSize;
 
     // return existing object for chaining
     return *this;
@@ -37,7 +37,7 @@ String& String::operator+= (const char *s) {
         std::strncat(this->str_, s, this->capacity_);
     } else {
         char *temp = new char[this->size_+1];
-        strncpy(temp, this->str_, this->size_);
+        strncpy(temp, this->str_, this->size_+1);
 
         delete[] this->str_;
         this->capacity_ = newSize+1;
@@ -46,6 +46,8 @@ String& String::operator+= (const char *s) {
         std::strncat(this->str_, s, this->capacity_);
         delete[] temp;
     }
+
+    this->size_ = newSize;
 
     // return existing object for chaining
     return *this;
@@ -59,7 +61,7 @@ void String::clear() {
     this->size_ = 0;
 }
 
-String& String::operator= (String const &s) {
+String& String::operator= (const String &s) {
     // check if enough capacity
     if(this->capacity_ > s.size_) {
         // just strncpy
@@ -108,4 +110,35 @@ void String::swap(String& s) {
 ostream& operator<< (ostream& os, const String& s) {
     os << s.c_str();
     return os;
+}
+
+bool operator< (const String &lhs, const String &rhs) {
+    return true;
+}
+
+
+bool operator< (const String &lhs, const char *rhs) {
+    return true;
+}
+
+bool operator< (const char *lhs, const String &rhs) {
+    return true;
+}
+
+String operator+ (const String &lhs, const String &rhs) {
+    String temp = lhs;
+    temp += rhs;
+    return temp;
+}
+
+String operator+ (const String &lhs, const char *rhs) {
+    String temp = lhs;
+    temp += rhs;
+    return temp;
+}
+
+String operator+ (const char *lhs, const String &rhs) {
+    String temp = lhs;
+    temp += rhs;
+    return temp;
 }

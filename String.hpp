@@ -73,14 +73,14 @@ public:
     }
 
     // 8. operator +=
-    String& operator+= (String const &s);
+    String& operator+= (const String &s);
     String& operator+= (const char *s);
 
     // 9. clear()
     void clear();
 
     // 10. operator =
-    String &operator= (String const &s);
+    String &operator= (const String &s);
     String &operator= (const char *s);
 
     // 11. swap()
@@ -92,9 +92,16 @@ private:
     size_t capacity_ = 0;
 };
 // A. relational operators (<, >, <=, >=, ==, !=)
-
+bool operator< (const String &lhs, const String &rhs);
+bool operator< (const String &lhs, const char *rhs);
+bool operator< (const char *lhs, const String &rhs);
 
 // B. operator <<, 
 std::ostream& operator<<(std::ostream&, const String&);
+
+// C. operators +
+String operator+ (const String &lhs, const String &rhs);
+String operator+ (const String &lhs, const char *rhs);
+String operator+ (const char *lhs, const String &rhs);
 
 #endif /* String_hpp */

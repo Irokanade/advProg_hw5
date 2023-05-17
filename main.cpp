@@ -31,5 +31,20 @@ int main() {
     cout << s << endl;
     cout << s.size() << endl;
 
+    // s = "hi";
+    s = s1 + t;
+    cout << s << endl;
+
+    s = "NTNU " + s1;
+    // String noStr = " 1123";
+    // s += ((String("1123"))+=(s));
+    s = " 1123hihihihihihihihih" + s + "4567hahahahahahahhahahahhaahhaa";
+    cout << "s: " << s << endl;
+    cout << s.size() << endl;
+    cout << s1 << endl;
+
+    s = "NTNU " + s1 +" hihihihihih" + s1 + s1 + s1 + s1;
+    cout << s << endl;
+
     return 0;
 }
