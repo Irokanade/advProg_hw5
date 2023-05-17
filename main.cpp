@@ -26,5 +26,10 @@ int main() {
 
     cout << s << ' ' << s1 << endl;
 
+    s.clear();
+
+    cout << s << endl;
+    cout << s.size() << endl;
+
     return 0;
 }

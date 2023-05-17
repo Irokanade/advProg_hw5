@@ -38,21 +38,22 @@ public:
     class Proxy {
     public:
         friend class String;
+        // getter
         // conversion operator
         operator char() const {
-            return m_s.get(m_index);
+            return *m_char;
         }
 
+        // setter
         Proxy& operator= (char value) {
-            m_s.set(m_index, value);
+            *m_char = value;
             return *this;
         }
 
     private:
         // using initializer list constructor
-        Proxy(String &s, size_t index): m_s(s), m_index(index) {}
-        String &m_s;
-        size_t m_index; 
+        Proxy(char& c): m_char(&c) {}
+        char *m_char;
     };
 
     // 5. size()
@@ -66,13 +67,9 @@ public:
     }
 
     // 7. operator []
-    // read write
+    // using proxy class to help
     Proxy operator[] (size_t index) {
-        return Proxy(*this, index);
-    }
-    // read only
-    const char operator[] (size_t index) const {
-        return this->str_[index];
+        return Proxy(this->str_[index]);
     }
 
     // 8. operator +=
@@ -93,9 +90,6 @@ private:
     char *str_ = nullptr;
     size_t size_ = 0;
     size_t capacity_ = 0;
-
-    const char get(size_t index) const {return this->str_[index];}
-    void set(size_t index, char value) {this->str_[index] = value;}
 };
 // A. relational operators (<, >, <=, >=, ==, !=)
 
