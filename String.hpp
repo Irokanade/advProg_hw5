@@ -18,7 +18,7 @@ public:
         this->size_ = s.size_;
         this->capacity_ = s.size_;
         this->str_ = new char[this->capacity_+1];
-        strncpy(this->str_, s.str_, s.size_);
+        strncpy(this->str_, s.str_, this->capacity_);
     }
 
     // 3. constructor with one parameter with type const char *
@@ -27,7 +27,7 @@ public:
         // extra space for null terminating character
         this->capacity_ = this->size_ + 1;
         this->str_ = new char[this->capacity_]; 
-        std::strncpy(this->str_, s, this->size_);
+        std::strncpy(this->str_, s, this->capacity_);
     }
     // 4. destructor
     ~String() {
@@ -59,11 +59,10 @@ public:
     size_t size() const {
         return this->size_;
     }
-    
+
     // 6. c_str()
     const char *c_str() const {
-        const char *temp = this->str_;
-        return temp;
+        return this->str_;
     }
 
     // 7. operator []
@@ -88,6 +87,7 @@ public:
     String &operator= (const char *s);
 
     // 11. swap()
+    void swap(String& s);
 
 private:
     char *str_ = nullptr;
@@ -98,6 +98,8 @@ private:
     void set(size_t index, char value) {this->str_[index] = value;}
 };
 // A. relational operators (<, >, <=, >=, ==, !=)
+
+
 // B. operator <<, 
 std::ostream& operator<<(std::ostream&, const String&);
 

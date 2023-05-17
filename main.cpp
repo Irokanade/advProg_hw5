@@ -19,5 +19,12 @@ int main() {
     cout << s[1] << endl;
     cout << s << endl;
 
+    String s1;
+    s1 = "hello";
+
+    s.swap(s1);
+
+    cout << s << ' ' << s1 << endl;
+
     return 0;
 }
