@@ -17,8 +17,18 @@ int main() {
 
     cout << s[1] << endl;
     s[1] = 'B';
+    char B = s[1];
+    cout << B << endl;
     cout << s[1] << endl;
     cout << s << endl;
+    
+
+    char *pc = &s[0];
+    *pc = '0';
+    cout << *pc;
+    const char *cpc = nullptr;
+    cpc = &s[1];
+    cout << cpc;
 
     String s1;
     s1 = "hello";
@@ -58,6 +68,16 @@ int main() {
     cout << (s1 < t) << endl;
     cout << (s1 < "NTNU") << endl;
     cout << ("NTNU" < s1) << endl;
+
+    string test("hello");
+    test[2] = '\0';
+    cout << test << endl;
+    cout << test.size() << endl;
+
+    string test2 = "a21111111111";
+    // test2[2] = '\0';
+    cout << "123 > " << test2 << endl;
+    cout << (string("123") > test2) << endl;
 
     return 0;
 }

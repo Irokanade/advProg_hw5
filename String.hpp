@@ -34,29 +34,6 @@ public:
         delete[] this->str_;
     }
 
-    // using Proxy class to implement [] set and get function
-    class Proxy {
-    public:
-        // make sure only String class may use this via private constructor
-        friend class String;
-        // getter
-        // conversion operator
-        operator char() const {
-            return *m_char;
-        }
-
-        // setter
-        Proxy& operator= (char value) {
-            *m_char = value;
-            return *this;
-        }
-
-    private:
-        // using initializer list constructor
-        Proxy(char& c): m_char(&c) {}
-        char *m_char;
-    };
-
     // 5. size()
     size_t size() const {
         return this->size_;
@@ -68,9 +45,11 @@ public:
     }
 
     // 7. operator []
-    // using proxy class to help
-    Proxy operator[] (size_t index) {
-        return Proxy(this->str_[index]);
+    const char& operator[] (const size_t index) const {
+        return this->str_[index];
+    }
+    char& operator[] (const size_t index) {
+        return const_cast<char &>(static_cast<const String &>(*this)[index]);
     }
 
     // 8. operator +=
@@ -86,6 +65,10 @@ public:
 
     // 11. swap()
     void swap(String& s);
+
+    // compare() mf for overloading relation operations
+    int compare(const String& s) const;
+    int compare(const char *s) const;
 
 private:
     char *str_ = nullptr;
