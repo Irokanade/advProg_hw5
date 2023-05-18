@@ -124,6 +124,14 @@ std::ostream& operator<< (std::ostream& os, const String& s) {
     return os;
 }
 
+std::istream& operator>>(std::istream& is, String& s) {
+    char temp[256];
+    is.getline(temp, 256);
+    s = temp;
+
+    return is;
+}
+
 // operator <
 bool operator< (const String &lhs, const String &rhs) {
     return (lhs.compare(rhs) < 0);

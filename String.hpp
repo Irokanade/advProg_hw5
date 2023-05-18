@@ -2,7 +2,7 @@
 #define String_hpp
 
 #include <cstring>
-#include <ostream>
+#include <iostream>
 
 class String {
 public:
@@ -106,8 +106,9 @@ bool operator!= (const String &lhs, const String &rhs);
 bool operator!= (const String &lhs, const char *rhs);
 bool operator!= (const char *lhs, const String &rhs);
 
-// B. operator <<, 
+// B. operator <<, >>
 std::ostream& operator<<(std::ostream&, const String&);
+std::istream& operator>>(std::istream&, String&);
 
 // C. operators +
 String operator+ (const String &lhs, const String &rhs);

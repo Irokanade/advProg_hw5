@@ -74,13 +74,16 @@ int main() {
     cout << test << endl;
     cout << test.size() << endl;
 
-    string test2 = "a21111111111";
+    String test2 = "a21111111111";
     // test2[2] = '\0';
     cout << "123 > " << test2 << endl;
-    cout << (string("123") > test2) << endl;
+    cout << ("123" > test2) << endl;
 
-    char *evil = test2.c_str();
-    char *test = test.c_str();
+    const char *evil = test2.c_str();
+    cout << evil << endl;
+
+    cin >> test2;
+    cout << "new test2: " << test2 << endl;
 
     return 0;
 }
