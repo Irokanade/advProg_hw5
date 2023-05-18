@@ -16,8 +16,8 @@ public:
     // 2. copy constructor
     String(const String &s) {
         this->size_ = s.size_;
-        this->capacity_ = s.size_;
-        this->str_ = new char[this->capacity_+1];
+        this->capacity_ = s.size_+1;
+        this->str_ = new char[this->capacity_];
         std::strncpy(this->str_, s.str_, this->capacity_);
     }
 
@@ -25,7 +25,7 @@ public:
     String(const char *s) {
         this->size_ = std::strlen(s);
         // extra space for null terminating character
-        this->capacity_ = this->size_ + 1;
+        this->capacity_ = this->size_+1;
         this->str_ = new char[this->capacity_]; 
         std::strncpy(this->str_, s, this->capacity_);
     }
@@ -37,6 +37,7 @@ public:
     // using Proxy class to implement [] set and get function
     class Proxy {
     public:
+        // make sure only String class may use this via private constructor
         friend class String;
         // getter
         // conversion operator
