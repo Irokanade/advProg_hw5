@@ -69,7 +69,7 @@ int main() {
     cout << (s1 < "NTNU") << endl;
     cout << ("NTNU" < s1) << endl;
 
-    string test("hello");
+    String test("hello");
     test[2] = '\0';
     cout << test << endl;
     cout << test.size() << endl;
@@ -78,6 +78,9 @@ int main() {
     // test2[2] = '\0';
     cout << "123 > " << test2 << endl;
     cout << (string("123") > test2) << endl;
+
+    char *evil = test2.c_str();
+    char *test = test.c_str();
 
     return 0;
 }

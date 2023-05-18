@@ -118,7 +118,9 @@ int String::compare(const char *s) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const String& s) {
-    os << s.c_str();
+    for(size_t i = 0; i < s.size(); ++i) {
+        os << s[i];
+    }
     return os;
 }
 
