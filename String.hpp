@@ -18,12 +18,12 @@ public:
         this->size_ = s.size_;
         this->capacity_ = s.size_;
         this->str_ = new char[this->capacity_+1];
-        strncpy(this->str_, s.str_, this->capacity_);
+        std::strncpy(this->str_, s.str_, this->capacity_);
     }
 
     // 3. constructor with one parameter with type const char *
     String(const char *s) {
-        this->size_ = strlen(s);
+        this->size_ = std::strlen(s);
         // extra space for null terminating character
         this->capacity_ = this->size_ + 1;
         this->str_ = new char[this->capacity_]; 
@@ -117,6 +117,10 @@ bool operator== (const String &lhs, const String &rhs);
 bool operator== (const String &lhs, const char *rhs);
 bool operator== (const char *lhs, const String &rhs);
 
+// operator !=
+bool operator!= (const String &lhs, const String &rhs);
+bool operator!= (const String &lhs, const char *rhs);
+bool operator!= (const char *lhs, const String &rhs);
 
 // B. operator <<, 
 std::ostream& operator<<(std::ostream&, const String&);

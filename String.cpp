@@ -1,7 +1,5 @@
 #include "String.hpp"
 
-using namespace std;
-
 String& String::operator+= (const String &s) {
     // check if enough capacity
     size_t newSize = this->size_+s.size_;
@@ -13,7 +11,7 @@ String& String::operator+= (const String &s) {
     } else {
         // else reallocate memory
         char *temp = new char[this->size_+1];
-        strncpy(temp, this->str_, this->size_+1);
+        std::strncpy(temp, this->str_, this->size_+1);
 
         delete[] this->str_;
         this->capacity_ = newSize+1;
@@ -37,7 +35,7 @@ String& String::operator+= (const char *s) {
         std::strncat(this->str_, s, this->capacity_);
     } else {
         char *temp = new char[this->size_+1];
-        strncpy(temp, this->str_, this->size_+1);
+        std::strncpy(temp, this->str_, this->size_+1);
 
         delete[] this->str_;
         this->capacity_ = newSize+1;
@@ -65,7 +63,7 @@ String& String::operator= (const String &s) {
     // check if enough capacity
     if(this->capacity_ > s.size_) {
         // just strncpy
-        strncpy(this->str_, s.str_, this->capacity_);
+        std::strncpy(this->str_, s.str_, this->capacity_);
     } else {
         // else reallocate memory
         delete[] this->str_;
@@ -81,12 +79,12 @@ String& String::operator= (const String &s) {
 }
 
 String& String::operator= (const char *s) {
-    size_t newSize = strlen(s);
+    size_t newSize = std::strlen(s);
 
     // check if enough capacity
     if(this->capacity_ > newSize) {
         // just strncpy
-        strncpy(this->str_, s, this->capacity_);
+        std::strncpy(this->str_, s, this->capacity_);
     } else {
         // else reallocate memory
         delete[] this->str_;
@@ -107,87 +105,87 @@ void String::swap(String& s) {
     s = temp;
 }
 
-ostream& operator<< (ostream& os, const String& s) {
+std::ostream& operator<< (std::ostream& os, const String& s) {
     os << s.c_str();
     return os;
 }
 
 // operator <
 bool operator< (const String &lhs, const String &rhs) {
-    return (strcmp(lhs.c_str(), rhs.c_str()) < 0);
+    return (std::strcmp(lhs.c_str(), rhs.c_str()) < 0);
 }
 
 bool operator< (const String &lhs, const char *rhs) {
-    return (strcmp(lhs.c_str(), rhs) < 0);
+    return (std::strcmp(lhs.c_str(), rhs) < 0);
 }
 
 bool operator< (const char *lhs, const String &rhs) {
-    return (strcmp(lhs, rhs.c_str()) < 0);
+    return (std::strcmp(lhs, rhs.c_str()) < 0);
 }
 
 // operator >
 bool operator> (const String &lhs, const String &rhs) {
-    return (strcmp(lhs.c_str(), rhs.c_str()) > 0);
+    return (std::strcmp(lhs.c_str(), rhs.c_str()) > 0);
 }
 
 bool operator> (const String &lhs, const char *rhs) {
-    return (strcmp(lhs.c_str(), rhs) > 0);
+    return (std::strcmp(lhs.c_str(), rhs) > 0);
 }
 
 bool operator> (const char *lhs, const String &rhs) {
-    return (strcmp(lhs, rhs.c_str()) > 0);
+    return (std::strcmp(lhs, rhs.c_str()) > 0);
 }
 
 // operator <=
 bool operator<= (const String &lhs, const String &rhs) {
-    return (strcmp(lhs.c_str(), rhs.c_str()) <= 0);
+    return (std::strcmp(lhs.c_str(), rhs.c_str()) <= 0);
 }
 
 bool operator<= (const String &lhs, const char *rhs) {
-    return (strcmp(lhs.c_str(), rhs) <= 0);
+    return (std::strcmp(lhs.c_str(), rhs) <= 0);
 }
 
 bool operator<= (const char *lhs, const String &rhs) {
-    return (strcmp(lhs, rhs.c_str()) <= 0);
+    return (std::strcmp(lhs, rhs.c_str()) <= 0);
 }
 
 // operator >=
 bool operator>= (const String &lhs, const String &rhs) {
-    return (strcmp(lhs.c_str(), rhs.c_str()) >= 0);
+    return (std::strcmp(lhs.c_str(), rhs.c_str()) >= 0);
 }
 
 bool operator>= (const String &lhs, const char *rhs) {
-    return (strcmp(lhs.c_str(), rhs) >= 0);
+    return (std::strcmp(lhs.c_str(), rhs) >= 0);
 }
 
 bool operator>= (const char *lhs, const String &rhs) {
-    return (strcmp(lhs, rhs.c_str()) >= 0);
+    return (std::strcmp(lhs, rhs.c_str()) >= 0);
 }
 
 // operator ==
 bool operator== (const String &lhs, const String &rhs) {
-    return (strcmp(lhs.c_str(), rhs.c_str()) == 0);
+    return (std::strcmp(lhs.c_str(), rhs.c_str()) == 0);
 }
 
 bool operator== (const String &lhs, const char *rhs) {
-    return (strcmp(lhs.c_str(), rhs) == 0);
+    return (std::strcmp(lhs.c_str(), rhs) == 0);
 }
 
 bool operator== (const char *lhs, const String &rhs) {
-    return (strcmp(lhs, rhs.c_str()) == 0);
+    return (std::strcmp(lhs, rhs.c_str()) == 0);
 }
 
 // operator !=
 bool operator!= (const String &lhs, const String &rhs) {
-    return (strcmp(lhs.c_str(), rhs.c_str()) != 0);
+    return (std::strcmp(lhs.c_str(), rhs.c_str()) != 0);
 }
 
 bool operator!= (const String &lhs, const char *rhs) {
-    return (strcmp(lhs.c_str(), rhs) != 0);
+    return (std::strcmp(lhs.c_str(), rhs) != 0);
 }
 
 bool operator!= (const char *lhs, const String &rhs) {
-    return (strcmp(lhs, rhs.c_str()) != 0);
+    return (std::strcmp(lhs, rhs.c_str()) != 0);
 }
 
 // binary operator +
