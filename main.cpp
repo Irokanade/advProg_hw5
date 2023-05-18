@@ -1,4 +1,5 @@
 #include  <iostream>
+#include <string>
 #include "String.hpp"
 
 using namespace std;
@@ -45,6 +46,18 @@ int main() {
 
     s = "NTNU " + s1 +" hihihihihih" + s1 + s1 + s1 + s1;
     cout << s << endl;
+
+    char cStr1[128] = "Adef";
+    char cStr2[128] = "adef";
+
+    cout << strcmp(cStr1, cStr2) << endl;
+
+    t = "1";
+    cout << s1 << " < " << t << endl;
+    cout << (string("NBNU") < string("1")) << endl;
+    cout << (s1 < t) << endl;
+    cout << (s1 < "NTNU") << endl;
+    cout << ("NTNU" < s1) << endl;
 
     return 0;
 }

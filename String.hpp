@@ -92,9 +92,31 @@ private:
     size_t capacity_ = 0;
 };
 // A. relational operators (<, >, <=, >=, ==, !=)
+// operator <
 bool operator< (const String &lhs, const String &rhs);
 bool operator< (const String &lhs, const char *rhs);
 bool operator< (const char *lhs, const String &rhs);
+
+// operator >
+bool operator> (const String &lhs, const String &rhs);
+bool operator> (const String &lhs, const char *rhs);
+bool operator> (const char *lhs, const String &rhs);
+
+// operator <=
+bool operator<= (const String &lhs, const String &rhs);
+bool operator<= (const String &lhs, const char *rhs);
+bool operator<= (const char *lhs, const String &rhs);
+
+// operator >=
+bool operator>= (const String &lhs, const String &rhs);
+bool operator>= (const String &lhs, const char *rhs);
+bool operator>= (const char *lhs, const String &rhs);
+
+// operator ==
+bool operator== (const String &lhs, const String &rhs);
+bool operator== (const String &lhs, const char *rhs);
+bool operator== (const char *lhs, const String &rhs);
+
 
 // B. operator <<, 
 std::ostream& operator<<(std::ostream&, const String&);
