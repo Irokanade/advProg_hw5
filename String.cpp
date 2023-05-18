@@ -126,7 +126,7 @@ std::ostream& operator<< (std::ostream& os, const String& s) {
 
 std::istream& operator>>(std::istream& is, String& s) {
     char temp[256];
-    is.getline(temp, 256);
+    is >> temp;
     s = temp;
 
     return is;

@@ -84,6 +84,9 @@ int main() {
 
     cin >> test2;
     cout << "new test2: " << test2 << endl;
+    string heyo;
+    cin >> heyo;
+    cout << heyo << endl;
 
     return 0;
 }
