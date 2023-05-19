@@ -73,8 +73,8 @@ private:
     size_t capacity_ = 0;
 
     // simulated c++ string class strncat
-    String &mystrncat(String &dest, const String &src, size_t num);
-    String &mystrncat(String &dest, const char *src, size_t num);
+    String &mystrcat(String &dest, const String &src);
+    String &mystrcat(String &dest, const char *src);
 
 };
 // A. relational operators (<, >, <=, >=, ==, !=)

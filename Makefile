@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -std=c++20 -Wall -pedantic
+CFLAGS = -std=c++20 -Wall -Wextra -pedantic
 
 main: main.o string.o
 	$(CC) $(CFLAGS) $^ -o $@

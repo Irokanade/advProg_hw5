@@ -7,7 +7,7 @@ String& String::operator+= (const String &s) {
     // use > operator to account for null terminating character
     if(this->capacity_ > newSize) {
         // if enough capacity then just strncat
-        this->mystrncat(*this, s, this->capacity_);
+        this->mystrcat(*this, s);
     } else {
         // else reallocate memory
         String temp = *this;
@@ -17,7 +17,7 @@ String& String::operator+= (const String &s) {
         this->str_ = new char[this->capacity_]; 
         memset(this->str_, 0, this->capacity_);
         memcpy(this->str_, temp.str_, temp.size_);
-        this->mystrncat(*this, s, this->capacity_);
+        this->mystrcat(*this, s);
     }
 
     this->size_ = newSize;
@@ -31,21 +31,16 @@ String& String::operator+= (const char *s) {
     size_t newSize = this->size_ + strlen(s);
 
     if(this->capacity_ > newSize) {
-        this->mystrncat(*this, s, this->capacity_);
-        // std::strncat(this->str_, s, this->capacity_);
+        this->mystrcat(*this, s);
     } else {
         String temp = *this;
-        // this->mystrncpy(temp, *this, this->size_+1);
-        // std::strncpy(temp, this->str_, this->size_+1);
 
         delete[] this->str_;
         this->capacity_ = newSize+1;
         this->str_ = new char[this->capacity_]; 
         memset(this->str_, 0, this->capacity_);
         memcpy(this->str_, temp.str_, temp.size_);
-        this->mystrncat(*this, s, this->capacity_);
-        // std::strncpy(this->str_, temp, this->capacity_);
-        // std::strncat(this->str_, s, this->capacity_);
+        this->mystrcat(*this, s);
     }
 
     this->size_ = newSize;
@@ -75,7 +70,6 @@ String& String::operator= (const char *s) {
         // just strncpy
         memset(this->str_, 0, this->capacity_);
         memcpy(this->str_, s, newSize);
-        // std::strncpy(this->str_, s, this->capacity_);
     } else {
         // else reallocate memory
         delete[] this->str_;
@@ -83,7 +77,6 @@ String& String::operator= (const char *s) {
         this->str_ = new char[this->capacity_]; 
         memset(this->str_, 0, this->capacity_);
         memcpy(this->str_, s, newSize);
-        // std::strncpy(this->str_, s, this->capacity_);
     }
 
     this->size_ = newSize;
@@ -121,15 +114,15 @@ int String::compare(const char *s) const {
     return this->compare(temp);
 }
 
-String &String::mystrncat(String &dest, const String &src, size_t num) {
+String &String::mystrcat(String &dest, const String &src) {
     // assume capacity is enough
-    memset(dest.str_+dest.size_, 0, num-dest.size_);
+    memset(dest.str_+dest.size_, 0, dest.capacity_-dest.size_);
     memcpy(dest.str_+dest.size_, src.str_, src.size_);
 
     return dest;
 }
 
-String &String::mystrncat(String &dest, const char *src, size_t num) {
+String &String::mystrcat(String &dest, const char *src) {
     std::strncat(dest.str_, src, dest.capacity_);
     return dest;
 }
