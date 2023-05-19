@@ -46,7 +46,8 @@ int main() {
     s = s1 + t;
     cout << s << endl;
 
-    s = "NTNU " + s1;
+    s = s1 + s1 + s1+s1+s1+s1+s1+s1+s1+s1+s1+s1;
+    cout << s << endl;
     // String noStr = " 1123";
     // s += ((String("1123"))+=(s));
     s = " 1123hihihihihihihihih" + s + "4567hahahahahahahhahahahhaahhaa";
@@ -54,7 +55,7 @@ int main() {
     cout << s.size() << endl;
     cout << s1 << endl;
 
-    s = "NTNU " + s1 +" hihihihihih" + s1 + s1 + s1 + s1;
+    s = "NTNU " + s1 + " hihihihihih" + s1 + s1 + s1 +s1;
     cout << s << endl;
 
     char cStr1[128] = "Adef";
@@ -70,9 +71,15 @@ int main() {
     cout << ("NTNU" < s1) << endl;
 
     String test("hello");
+    cout << test.size();
     test[2] = '\0';
+    String brosk(" brosk");
+    cout << brosk << endl;
+    test += brosk;
     cout << test << endl;
     cout << test.size() << endl;
+
+    
 
     String test2 = "a21111111111";
     // test2[2] = '\0';
@@ -82,11 +89,13 @@ int main() {
     const char *evil = test2.c_str();
     cout << evil << endl;
 
+    String test3;
     cin >> test2;
-    cout << "new test2: " << test2 << endl;
-    string heyo;
-    cin >> heyo;
-    cout << heyo << endl;
+    cout << test2 << endl;
+    test2 += "124";
+    cout << test2 << endl;
+    cin >> test3;
+    cout << test3 << endl;
 
     return 0;
 }

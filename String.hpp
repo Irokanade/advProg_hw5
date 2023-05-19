@@ -3,32 +3,30 @@
 
 #include <cstring>
 #include <iostream>
+#include <ostream>
 
 class String {
 public:
     // 1. default constructor
-    String() {
-        this->size_ = 0;
-        this->capacity_ = 0;
-        this->str_ = nullptr;
+    String(): size_(0), capacity_(0) {
+        this->str_ = new char[1];
+        this->str_[0] = '\0';
     }
 
     // 2. copy constructor
-    String(const String &s) {
-        this->size_ = s.size_;
-        this->capacity_ = s.size_+1;
+    String(const String &s): size_(s.size_), capacity_(s.size_+1) {
         this->str_ = new char[this->capacity_];
-        std::strncpy(this->str_, s.str_, this->capacity_);
+        memset(this->str_, 0, this->capacity_);
+        memcpy(this->str_, s.str_, s.size_);
     }
 
     // 3. constructor with one parameter with type const char *
-    String(const char *s) {
-        this->size_ = std::strlen(s);
+    String(const char *s): size_(std::strlen(s)), capacity_(std::strlen(s)+1) {
         // extra space for null terminating character
-        this->capacity_ = this->size_+1;
-        this->str_ = new char[this->capacity_]; 
+        this->str_ = new char[this->capacity_];
         std::strncpy(this->str_, s, this->capacity_);
     }
+
     // 4. destructor
     ~String() {
         delete[] this->str_;
@@ -60,7 +58,7 @@ public:
     void clear();
 
     // 10. operator =
-    String &operator= (const String &s);
+    String &operator= (String s);
     String &operator= (const char *s);
 
     // 11. swap()
@@ -74,6 +72,11 @@ private:
     char *str_ = nullptr;
     size_t size_ = 0;
     size_t capacity_ = 0;
+
+    // simulated c++ string class strcat
+    String &mystrncat(String &dest, const String &src, size_t num);
+    String &mystrncat(String &dest, const char *src, size_t num);
+
 };
 // A. relational operators (<, >, <=, >=, ==, !=)
 // operator <
@@ -111,8 +114,8 @@ std::ostream& operator<<(std::ostream&, const String&);
 std::istream& operator>>(std::istream&, String&);
 
 // C. operators +
-String operator+ (const String &lhs, const String &rhs);
-String operator+ (const String &lhs, const char *rhs);
-String operator+ (const char *lhs, const String &rhs);
+const String operator+ (const String &lhs, const String &rhs);
+const String operator+ (const String &lhs, const char *rhs);
+const String operator+ (const char *lhs, const String &rhs);
 
 #endif /* String_hpp */
