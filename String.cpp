@@ -1,5 +1,42 @@
 #include "String.hpp"
 
+String::String(): size_(0), capacity_(0) {
+    this->str_ = new char[1];
+    this->str_[0] = '\0';
+}
+
+String::String(const String &s): size_(s.size_), capacity_(s.size_+1) {
+    this->str_ = new char[this->capacity_];
+    memset(this->str_, 0, this->capacity_);
+    memcpy(this->str_, s.str_, s.size_);
+}
+
+String::String(const char *s): size_(strlen(s)), capacity_(strlen(s)+1) {
+    // extra space for null terminating character
+    this->str_ = new char[this->capacity_];
+    strncpy(this->str_, s, this->capacity_);
+}
+
+String::~String() {
+    delete[] this->str_;
+}
+
+size_t String::size() const {
+    return this->size_;
+}
+
+const char *String::c_str() const {
+    return this->str_;
+}
+
+const char& String::operator[] (const size_t index) const {
+    return this->str_[index];
+}
+
+char& String::operator[] (const size_t index) {
+    return const_cast<char &>(static_cast<const String &>(*this)[index]);
+}
+
 String& String::operator+= (const String &s) {
     // check if enough capacity
     size_t newSize = this->size_+s.size_;
@@ -63,7 +100,7 @@ String& String::operator= (String s) {
 }
 
 String& String::operator= (const char *s) {
-    size_t newSize = std::strlen(s);
+    size_t newSize = strlen(s);
 
     // check if enough capacity
     if(this->capacity_ > newSize) {
@@ -123,7 +160,7 @@ String &String::mystrcat(String &dest, const String &src) {
 }
 
 String &String::mystrcat(String &dest, const char *src) {
-    std::strncat(dest.str_, src, dest.capacity_);
+    strncat(dest.str_, src, dest.capacity_);
     return dest;
 }
 

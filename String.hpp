@@ -7,47 +7,26 @@
 class String {
 public:
     // 1. default constructor
-    String(): size_(0), capacity_(0) {
-        this->str_ = new char[1];
-        this->str_[0] = '\0';
-    }
+    String();
 
     // 2. copy constructor
-    String(const String &s): size_(s.size_), capacity_(s.size_+1) {
-        this->str_ = new char[this->capacity_];
-        memset(this->str_, 0, this->capacity_);
-        memcpy(this->str_, s.str_, s.size_);
-    }
+    String(const String &s);
 
     // 3. constructor with one parameter with type const char *
-    String(const char *s): size_(std::strlen(s)), capacity_(std::strlen(s)+1) {
-        // extra space for null terminating character
-        this->str_ = new char[this->capacity_];
-        std::strncpy(this->str_, s, this->capacity_);
-    }
+    String(const char *s);
 
     // 4. destructor
-    ~String() {
-        delete[] this->str_;
-    }
+    ~String();
 
     // 5. size()
-    size_t size() const {
-        return this->size_;
-    }
+    size_t size() const;
 
     // 6. c_str()
-    const char *c_str() const {
-        return this->str_;
-    }
+    const char *c_str() const;
 
     // 7. operator []
-    const char& operator[] (const size_t index) const {
-        return this->str_[index];
-    }
-    char& operator[] (const size_t index) {
-        return const_cast<char &>(static_cast<const String &>(*this)[index]);
-    }
+    const char& operator[] (const size_t index) const;
+    char& operator[] (const size_t index);
 
     // 8. operator +=
     String& operator+= (const String &s);
