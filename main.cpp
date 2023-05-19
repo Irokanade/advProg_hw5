@@ -46,7 +46,7 @@ int main() {
     s = s1 + t;
     cout << s << endl;
 
-    s = s1 + s1 + s1+s1+s1+s1+s1+s1+s1+s1+s1+s1;
+    s = s1 + s1 + s1+s1+s1+s1+s1+s1+s1+s1+s1+s1+s+s+s+s+s+s1+s1;
     cout << s << endl;
     // String noStr = " 1123";
     // s += ((String("1123"))+=(s));
@@ -89,11 +89,11 @@ int main() {
     const char *evil = test2.c_str();
     cout << evil << endl;
 
-    String test3;
     cin >> test2;
     cout << test2 << endl;
     test2 += "124";
     cout << test2 << endl;
+    String test3;
     cin >> test3;
     cout << test3 << endl;
 

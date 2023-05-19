@@ -3,7 +3,6 @@
 
 #include <cstring>
 #include <iostream>
-#include <ostream>
 
 class String {
 public:
@@ -73,7 +72,7 @@ private:
     size_t size_ = 0;
     size_t capacity_ = 0;
 
-    // simulated c++ string class strcat
+    // simulated c++ string class strncat
     String &mystrncat(String &dest, const String &src, size_t num);
     String &mystrncat(String &dest, const char *src, size_t num);
 

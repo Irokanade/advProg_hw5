@@ -142,6 +142,8 @@ std::ostream& operator<< (std::ostream& os, const String& s) {
 }
 
 std::istream& operator>>(std::istream& in, String& s) {
+    s.clear();
+
     // verify no errors are set, flush tied streams, strip leading whitespace.
     std::istream::sentry sentry(in);
     if (!sentry) {
